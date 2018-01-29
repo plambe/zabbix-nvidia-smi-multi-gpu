@@ -1,2 +1,2 @@
 # zabbix-nvidia-smi-multi-gpu
-A zabbix template using nvidia-smi. Work with multiple GPUs. 
+A zabbix template using nvidia-smi. Works with multiple GPUs. 
