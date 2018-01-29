@@ -1,7 +1,7 @@
 # zabbix-nvidia-smi-multi-gpu
 A zabbix template using nvidia-smi. Works with multiple GPUs. 
 
-This is essentially a rewrite of RichardKav's template, as found here: https://github.com/RichardKav/zabbix-nvidia-smi-integration/
+This is essentially a multi-GPU rewrite of RichardKav's template, as found here: https://github.com/RichardKav/zabbix-nvidia-smi-integration/
 
 The following UserParameters need to be added to the zabbix-agent configuration: 
 
