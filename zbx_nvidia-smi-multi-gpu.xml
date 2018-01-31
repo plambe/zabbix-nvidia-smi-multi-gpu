@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2018-01-29T10:02:57Z</date>
+    <date>2018-01-31T17:55:26Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -74,7 +74,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>gpu.discovery</key>
-                    <delay>30</delay>
+                    <delay>600</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -278,10 +278,10 @@
                             <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Power</name>
+                            <name>GPU $1 Power in decaWatts</name>
                             <type>0</type>
                             <snmp_community/>
-                            <multiplier>0</multiplier>
+                            <multiplier>1</multiplier>
                             <snmp_oid/>
                             <key>gpu.power[{#GPUINDEX}]</key>
                             <delay>60</delay>
@@ -290,7 +290,7 @@
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
-                            <units>W</units>
+                            <units>dW</units>
                             <delta>0</delta>
                             <snmpv3_contextname/>
                             <snmpv3_securityname/>
@@ -299,7 +299,7 @@
                             <snmpv3_authpassphrase/>
                             <snmpv3_privprotocol>0</snmpv3_privprotocol>
                             <snmpv3_privpassphrase/>
-                            <formula>1</formula>
+                            <formula>0.1</formula>
                             <delay_flex/>
                             <params/>
                             <ipmi_sensor/>
@@ -410,7 +410,38 @@
                             <application_prototypes/>
                         </item_prototype>
                     </item_prototypes>
-                    <trigger_prototypes/>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Nvidia GPUs Performance:gpu.temp[{#GPUINDEX}].last()}&gt;80</expression>
+                            <name>GPU {#GPUINDEX} Temperature is extremely high</name>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description>A GPU's temperature is getting extremely high!</description>
+                            <type>0</type>
+                            <dependencies/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Nvidia GPUs Performance:gpu.temp[{#GPUINDEX}].last()}&gt;70</expression>
+                            <name>GPU {#GPUINDEX} Temperature is high</name>
+                            <url/>
+                            <status>0</status>
+                            <priority>2</priority>
+                            <description>A GPU's temperature is getting high!</description>
+                            <type>0</type>
+                            <dependencies/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Nvidia GPUs Performance:gpu.temp[{#GPUINDEX}].last()}&gt;75</expression>
+                            <name>GPU {#GPUINDEX} Temperature is very high</name>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>A GPU's temperature is getting very high!</description>
+                            <type>0</type>
+                            <dependencies/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
                             <name>GPU {#GPUINDEX} Temperature, Fan Speed and Power</name>
