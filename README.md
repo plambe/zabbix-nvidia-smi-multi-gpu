@@ -16,6 +16,11 @@ UserParameter=gpu.memfree[*],nvidia-smi --query-gpu=memory.free --format=csv,noh
 UserParameter=gpu.memused[*],nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i $1 | tr -d "\n"
 UserParameter=gpu.memtotal[*],nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits -i $1 | tr -d "\n"
 ```
-If you feel like donating: 
+
+The get_gpus_info.sh file should be put in /etc/zabbix/scrips/ and made executable by running ```chmod +x get_gpus_info.sh```
+
+If you feel like donating:
+
 BTC: 165BPPrQSje6sUEaMCH9bFc35ioapjYZZh
+
 XMR: 49K7M4EDgqPCx7o7WBc9keEdNdcj3asdNbHhJ69wbovc1s5v4UctEBLH8bF1byknVDUAB3D7p7w7oYiB4yBuNBPjVWwYHDD
