@@ -1,7 +1,27 @@
 # zabbix-nvidia-smi-multi-gpu
-A zabbix template using nvidia-smi. Works with multiple GPUs. 
+A zabbix template using nvidia-smi. Works with multiple GPUs on Windows and Linux. 
 
 This is essentially a multi-GPU rewrite of RichardKav's template, as found here: https://github.com/RichardKav/zabbix-nvidia-smi-integration/
+
+## On Windows:
+
+```
+UserParameter=gpu.number,"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" -L | find /c /v ""
+UserParameter=gpu.discovery,C:\scripts\get_gpus_info.bat
+UserParameter=gpu.fanspeed[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=fan.speed --format=csv,noheader,nounits -i $1
+UserParameter=gpu.power[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=power.draw --format=csv,noheader,nounits -i $1
+UserParameter=gpu.temp[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=temperature.gpu --format=csv,noheader,nounits -i $1
+UserParameter=gpu.utilization[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=utilization.gpu --format=csv,noheader,nounits -i $1
+UserParameter=gpu.memfree[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=memory.free --format=csv,noheader,nounits -i $1
+UserParameter=gpu.memused[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=memory.used --format=csv,noheader,nounits -i $1
+UserParameter=gpu.memtotal[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=memory.total --format=csv,noheader,nounits -i $1
+```
+
+* The Windows script get_gpus_info.bat file should be put in C:\scripts\
+* It doesn't have any dependencies, other than having nvidia-smi.exe
+* Of course, it is possible to use other paths, but: 
+  * In case you change C:\scripts\, you need to update the "UserParameter=gpu.discovery" line in zabbix_agentd.conf
+  * In case you have installed nvidia-smi.exe in an alternate location, you need to update both the get_gpus_info.bat and the zabbix_agentd.conf
 
 ## On Linux: 
 
@@ -20,22 +40,6 @@ UserParameter=gpu.memtotal[*],nvidia-smi --query-gpu=memory.total --format=csv,n
 ```
 
 The get_gpus_info.sh file should be put in /etc/zabbix/scripts/ and made executable by running ```chmod +x get_gpus_info.sh```
-
-## On Windows:
-
-```
-UserParameter=gpu.number,"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" -L | find /c /v ""
-UserParameter=gpu.discovery,C:\scripts\get_gpus_info.bat
-UserParameter=gpu.fanspeed[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=fan.speed --format=csv,noheader,nounits -i $1
-UserParameter=gpu.power[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=power.draw --format=csv,noheader,nounits -i $1
-UserParameter=gpu.temp[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=temperature.gpu --format=csv,noheader,nounits -i $1
-UserParameter=gpu.utilization[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=utilization.gpu --format=csv,noheader,nounits -i $1
-UserParameter=gpu.memfree[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=memory.free --format=csv,noheader,nounits -i $1
-UserParameter=gpu.memused[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=memory.used --format=csv,noheader,nounits -i $1
-UserParameter=gpu.memtotal[*],"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" --query-gpu=memory.total --format=csv,noheader,nounits -i $1
-```
-
-The get_gpus_info.bat file should be put in C:\scripts\
 
 ## If you feel like donating:
 
