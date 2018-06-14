@@ -37,9 +37,3 @@ This is essentially a multi-GPU rewrite of RichardKav's template, as found here:
 The following UserParameters need to be added to the zabbix-agent configuration: 
 * Add the contents of the file `userparameter_nvidia-smi.conf.linux` to your zabbix_agentd.conf file.
 * The get_gpus_info.sh file should be put in /etc/zabbix/scripts/ and made executable by running ```chmod +x get_gpus_info.sh```
-
-## If you feel like donating:
-
-BTC: 165BPPrQSje6sUEaMCH9bFc35ioapjYZZh
-
-XMR: 49K7M4EDgqPCx7o7WBc9keEdNdcj3asdNbHhJ69wbovc1s5v4UctEBLH8bF1byknVDUAB3D7p7w7oYiB4yBuNBPjVWwYHDD
