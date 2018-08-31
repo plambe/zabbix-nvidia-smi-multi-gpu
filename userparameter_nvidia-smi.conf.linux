@@ -1,4 +1,4 @@
-UserParameter=gpu.number,/usr/bin/nvidia-smi -L | /bin/grep GeForce | /usr/bin/wc -l
+UserParameter=gpu.number,/usr/bin/nvidia-smi -L | /usr/bin/wc -l
 UserParameter=gpu.discovery,/etc/zabbix/scripts/get_gpus_info.sh
 UserParameter=gpu.fanspeed[*],nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits -i $1 | tr -d "\n"
 UserParameter=gpu.power[*],nvidia-smi --query-gpu=power.draw --format=csv,noheader,nounits -i $1 | tr -d "\n"
