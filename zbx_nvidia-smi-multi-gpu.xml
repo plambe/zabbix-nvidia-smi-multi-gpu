@@ -429,7 +429,12 @@
                             <priority>2</priority>
                             <description>A GPU's temperature is getting high!</description>
                             <type>0</type>
-                            <dependencies/>
+                            <dependencies>
+                                <dependency>
+                                    <name>GPU {#GPUINDEX} Temperature is very high</name>
+                                    <expression>{Template Nvidia GPUs Performance:gpu.temp[{#GPUINDEX}].last()}&gt;75</expression>
+                                </dependency>
+                            </dependencies>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template Nvidia GPUs Performance:gpu.temp[{#GPUINDEX}].last()}&gt;75</expression>
@@ -439,7 +444,12 @@
                             <priority>4</priority>
                             <description>A GPU's temperature is getting very high!</description>
                             <type>0</type>
-                            <dependencies/>
+                            <dependencies>
+                                <dependency>
+                                    <name>GPU {#GPUINDEX} Temperature is extremely high</name>
+                                    <expression>{Template Nvidia GPUs Performance:gpu.temp[{#GPUINDEX}].last()}&gt;80</expression>
+                                </dependency>
+                            </dependencies>
                         </trigger_prototype>
                     </trigger_prototypes>
                     <graph_prototypes>
