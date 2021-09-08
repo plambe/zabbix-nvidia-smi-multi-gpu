@@ -7,3 +7,7 @@ UserParameter=gpu.utilization[*],nvidia-smi --query-gpu=utilization.gpu --format
 UserParameter=gpu.memfree[*],nvidia-smi --query-gpu=memory.free --format=csv,noheader,nounits -i $1 | tr -d "\n"
 UserParameter=gpu.memused[*],nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i $1 | tr -d "\n"
 UserParameter=gpu.memtotal[*],nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits -i $1 | tr -d "\n"
+UserParameter=gpu.utilization.dec.min[*],nvidia-smi -q -d UTILIZATION -i $1 | grep -A 5  DEC | grep Min | tr -s ' ' | cut -d ' ' -f 4
+UserParameter=gpu.utilization.dec.max[*],nvidia-smi -q -d UTILIZATION -i $1 | grep -A 5  DEC | grep Max | tr -s ' ' | cut -d ' ' -f 4
+UserParameter=gpu.utilization.enc.min[*],nvidia-smi -q -d UTILIZATION -i $1 | grep -A 5  ENC | grep Min | tr -s ' ' | cut -d ' ' -f 4
+UserParameter=gpu.utilization.enc.max[*],nvidia-smi -q -d UTILIZATION -i $1 | grep -A 5  ENC | grep Max | tr -s ' ' | cut -d ' ' -f 4
