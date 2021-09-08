@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2021-08-21T02:14:30Z</date>
+    <date>2021-09-08T15:47:49Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -179,6 +179,54 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
+                            <name>GPU $1 Decoder Utilization Max</name>
+                            <key>gpu.utilization.dec.max[{#GPUINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>Nvidia</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>GPU $1 Decoder Utilization Min</name>
+                            <key>gpu.utilization.dec.min[{#GPUINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>Nvidia</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>GPU $1 Encoder Utilization Max</name>
+                            <key>gpu.utilization.enc.max[{#GPUINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>Nvidia</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>GPU $1 Encoder Utilization min</name>
+                            <key>gpu.utilization.enc.min[{#GPUINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>Nvidia</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>GPU $1 Utilization</name>
                             <key>gpu.utilization[{#GPUINDEX}]</key>
                             <delay>60</delay>
@@ -192,6 +240,45 @@
                         </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
+                        <graph_prototype>
+                            <name>GPU {#GPUINDEX} Encoder/Decoder Utilization</name>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>Template Nvidia GPUs Performance</host>
+                                        <key>gpu.utilization.dec.max[{#GPUINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <color>00FF00</color>
+                                    <item>
+                                        <host>Template Nvidia GPUs Performance</host>
+                                        <key>gpu.utilization.dec.min[{#GPUINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>BF00FF</color>
+                                    <item>
+                                        <host>Template Nvidia GPUs Performance</host>
+                                        <key>gpu.utilization.enc.max[{#GPUINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>4</sortorder>
+                                    <color>311B92</color>
+                                    <item>
+                                        <host>Template Nvidia GPUs Performance</host>
+                                        <key>gpu.utilization.enc.min[{#GPUINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
                         <graph_prototype>
                             <name>GPU {#GPUINDEX} Memory</name>
                             <graph_items>
