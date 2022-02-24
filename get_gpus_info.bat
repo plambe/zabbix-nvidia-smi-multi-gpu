@@ -5,7 +5,7 @@ echo {
 echo "data":[
 
 SET count=1
-FOR /F "tokens=* USEBACKQ" %%F IN (`"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe" -L`) DO (
+FOR /F "tokens=* USEBACKQ" %%F IN (`"nvidia-smi.exe" -L`) DO (
     if !count! GTR 1 echo ,
 
     SET line=%%F
