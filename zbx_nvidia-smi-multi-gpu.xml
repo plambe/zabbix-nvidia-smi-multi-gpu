@@ -43,7 +43,7 @@
                     <description>Discovery of graphics cards.</description>
                     <item_prototypes>
                         <item_prototype>
-                            <name>GPU $1 Fan Speed</name>
+                            <name>GPU [{#GPUINDEX}] Fan Speed</name>
                             <key>gpu.fanspeed[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -61,7 +61,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Memory Free</name>
+                            <name>GPU [{#GPUINDEX}] Memory Free</name>
                             <key>gpu.memfree[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -79,7 +79,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Memory Total</name>
+                            <name>GPU [{#GPUINDEX}] Memory Total</name>
                             <key>gpu.memtotal[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -97,7 +97,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Memory Used</name>
+                            <name>GPU [{#GPUINDEX}] Memory Used</name>
                             <key>gpu.memused[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -115,7 +115,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Power in decaWatts</name>
+                            <name>GPU [{#GPUINDEX}] Power in decaWatts</name>
                             <key>gpu.power[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -134,7 +134,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Temperature</name>
+                            <name>GPU [{#GPUINDEX}] Temperature</name>
                             <key>gpu.temp[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -179,7 +179,7 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Decoder Utilization Max</name>
+                            <name>GPU [{#GPUINDEX}] Decoder Utilization Max</name>
                             <key>gpu.utilization.dec.max[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -191,7 +191,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Decoder Utilization Min</name>
+                            <name>GPU [{#GPUINDEX}] Decoder Utilization Min</name>
                             <key>gpu.utilization.dec.min[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -203,7 +203,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Encoder Utilization Max</name>
+                            <name>GPU [{#GPUINDEX}] Encoder Utilization Max</name>
                             <key>gpu.utilization.enc.max[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -215,7 +215,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Encoder Utilization min</name>
+                            <name>GPU [{#GPUINDEX}] Encoder Utilization min</name>
                             <key>gpu.utilization.enc.min[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
@@ -227,7 +227,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU $1 Utilization</name>
+                            <name>GPU [{#GPUINDEX}] Utilization</name>
                             <key>gpu.utilization[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
