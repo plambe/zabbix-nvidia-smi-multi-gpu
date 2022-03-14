@@ -1,0 +1,286 @@
+zabbix_export:
+  version: '6.0'
+  date: '2022-03-14T10:30:58Z'
+  groups:
+    -
+      uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    -
+      uuid: 4ac3591ef0ac43b9b52082aee927443c
+      template: 'Template Nvidia GPUs Performance'
+      name: 'Template Nvidia GPUs Performance'
+      groups:
+        -
+          name: Templates
+      items:
+        -
+          uuid: 9c6144fe62b64222ae26b95ac0f75f1b
+          name: 'Number of GPUs'
+          key: gpu.number
+          delay: '30'
+          value_type: FLOAT
+          description: 'The number of GPUs present on this system.'
+          tags:
+            -
+              tag: Application
+              value: Nvidia
+      discovery_rules:
+        -
+          uuid: 768334546a4a42a084ba855f1ef7aa7a
+          name: 'GPU discovery'
+          key: gpu.discovery
+          delay: '600'
+          description: 'Discovery of graphics cards.'
+          item_prototypes:
+            -
+              uuid: c22ab72429bd48f191255020773037ee
+              name: 'GPU [{#GPUINDEX}] Fan Speed'
+              key: 'gpu.fanspeed[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: '%'
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '1'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: 55c8acf9a55d4593abf19e7d6b73f839
+              name: 'GPU [{#GPUINDEX}] Memory Free'
+              key: 'gpu.memfree[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: b
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '1000000'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: 9cb477fdadab4e54853bc7a1dd4cb822
+              name: 'GPU [{#GPUINDEX}] Memory Total'
+              key: 'gpu.memtotal[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: b
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '1000000'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: 1a0c33fda7d74b6d8fda455ff93d07ca
+              name: 'GPU [{#GPUINDEX}] Memory Used'
+              key: 'gpu.memused[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: b
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '1000000'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: 60abdb47182748debf219b6800fd6127
+              name: 'GPU [{#GPUINDEX}] Power in decaWatts'
+              key: 'gpu.power[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              units: dW
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '0.1'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: f143e8c1155e48c9949b719194df398e
+              name: 'GPU [{#GPUINDEX}] Temperature'
+              key: 'gpu.temp[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              units: C
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+              trigger_prototypes:
+                -
+                  uuid: eda08d9f4d8647929cdfafa1f103e649
+                  expression: 'last(/Template Nvidia GPUs Performance/gpu.temp[{#GPUINDEX}])>80'
+                  name: 'GPU {#GPUINDEX} Temperature is extremely high'
+                  priority: DISASTER
+                  description: 'A GPU''s temperature is getting extremely high!'
+                -
+                  uuid: 719ff13fdae14d22b2c3e2309d9b7ea8
+                  expression: 'last(/Template Nvidia GPUs Performance/gpu.temp[{#GPUINDEX}])>70'
+                  name: 'GPU {#GPUINDEX} Temperature is high'
+                  priority: WARNING
+                  description: 'A GPU''s temperature is getting high!'
+                  dependencies:
+                    -
+                      name: 'GPU {#GPUINDEX} Temperature is very high'
+                      expression: 'last(/Template Nvidia GPUs Performance/gpu.temp[{#GPUINDEX}])>75'
+                -
+                  uuid: a904fe14e6704067b4badc6f2015b472
+                  expression: 'last(/Template Nvidia GPUs Performance/gpu.temp[{#GPUINDEX}])>75'
+                  name: 'GPU {#GPUINDEX} Temperature is very high'
+                  priority: HIGH
+                  description: 'A GPU''s temperature is getting very high!'
+                  dependencies:
+                    -
+                      name: 'GPU {#GPUINDEX} Temperature is extremely high'
+                      expression: 'last(/Template Nvidia GPUs Performance/gpu.temp[{#GPUINDEX}])>80'
+            -
+              uuid: 0fab43a144c448f68db360d858f63a8e
+              name: 'GPU [{#GPUINDEX}] Decoder Utilization Max'
+              key: 'gpu.utilization.dec.max[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: '%'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: f219c859e83249718a3f5c204f49d7e8
+              name: 'GPU [{#GPUINDEX}] Decoder Utilization Min'
+              key: 'gpu.utilization.dec.min[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: '%'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: 72b026084dcd43f781f5ccf174f5b91e
+              name: 'GPU [{#GPUINDEX}] Encoder Utilization Max'
+              key: 'gpu.utilization.enc.max[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: '%'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: acba930337a14b6597636b67826521d7
+              name: 'GPU [{#GPUINDEX}] Encoder Utilization min'
+              key: 'gpu.utilization.enc.min[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: '%'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
+              uuid: 7d31fb41f2a94482857622ffa2a91848
+              name: 'GPU [{#GPUINDEX}] Utilization'
+              key: 'gpu.utilization[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: '%'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+          graph_prototypes:
+            -
+              uuid: bc52e988186840cba92c79906328c2e1
+              name: 'GPU {#GPUINDEX} Encoder/Decoder Utilization'
+              graph_items:
+                -
+                  sortorder: '1'
+                  drawtype: BOLD_LINE
+                  color: 1A7C11
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.utilization.dec.max[{#GPUINDEX}]'
+                -
+                  sortorder: '2'
+                  color: 00FF00
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.utilization.dec.min[{#GPUINDEX}]'
+                -
+                  sortorder: '3'
+                  drawtype: BOLD_LINE
+                  color: BF00FF
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.utilization.enc.max[{#GPUINDEX}]'
+                -
+                  sortorder: '4'
+                  color: 311B92
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.utilization.enc.min[{#GPUINDEX}]'
+            -
+              uuid: a2917c56b92b41f7939caf4f56b2b55a
+              name: 'GPU {#GPUINDEX} Memory'
+              graph_items:
+                -
+                  color: 00AA00
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.memfree[{#GPUINDEX}]'
+                -
+                  sortorder: '1'
+                  color: 0000DD
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.memused[{#GPUINDEX}]'
+            -
+              uuid: 8b022359152945828fd71153a4bd3270
+              name: 'GPU {#GPUINDEX} Temperature, Fan Speed and Power'
+              graph_items:
+                -
+                  color: 1A7C11
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.power[{#GPUINDEX}]'
+                -
+                  sortorder: '1'
+                  color: 2774A4
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.fanspeed[{#GPUINDEX}]'
+                -
+                  sortorder: '2'
+                  color: F63100
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.temp[{#GPUINDEX}]'
+            -
+              uuid: 0c1667cd6d194830acf318dbca844426
+              name: 'GPU {#GPUINDEX} Utilization'
+              graph_items:
+                -
+                  color: 2774A4
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.utilization[{#GPUINDEX}]'
