@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2021-09-08T15:47:49Z</date>
+    <date>2025-02-07T10:21:11Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -113,6 +113,18 @@
                                     <params>1000000</params>
                                 </step>
                             </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>GPU [{#GPUINDEX}] Memory Utilization</name>
+                            <key>gpu.memutilization[{#GPUINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>Nvidia</name>
+                                </application>
+                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>GPU [{#GPUINDEX}] Power in decaWatts</name>
@@ -295,6 +307,18 @@
                                     <item>
                                         <host>Template Nvidia GPUs Performance</host>
                                         <key>gpu.memused[{#GPUINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>GPU {#GPUINDEX} Memory Utilization</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>2774A4</color>
+                                    <item>
+                                        <host>Template Nvidia GPUs Performance</host>
+                                        <key>gpu.memutilization[{#GPUINDEX}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
