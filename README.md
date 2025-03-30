@@ -1,5 +1,6 @@
 # zabbix-nvidia-smi-multi-gpu
 A Zabbix template using nvidia-smi. Works with multiple GPUs on Windows and Linux.
+
 Fork from https://github.com/plambe/zabbix-nvidia-smi-multi-gpu.
 
 ## Features
