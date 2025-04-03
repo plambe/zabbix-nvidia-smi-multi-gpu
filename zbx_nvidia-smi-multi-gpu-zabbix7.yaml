@@ -91,16 +91,12 @@ zabbix_export:
                 - tag: Application
                   value: Nvidia
             - uuid: 60abdb47182748debf219b6800fd6127
-              name: 'GPU [{#GPUINDEX}] Power in decaWatts'
+              name: 'GPU [{#GPUINDEX}] Power in Watts'
               key: 'gpu.power[{#GPUINDEX}]'
               delay: '60'
               history: 7d
               value_type: FLOAT
-              units: dW
-              preprocessing:
-                - type: MULTIPLIER
-                  parameters:
-                    - '0.1'
+              units: W
               tags:
                 - tag: Application
                   value: Nvidia

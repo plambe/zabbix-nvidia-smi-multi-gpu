@@ -9,7 +9,7 @@ Fork from https://github.com/plambe/zabbix-nvidia-smi-multi-gpu.
 - Item prototypes for:
   - Fan speed
   - Total, free and used memory
-  - Power draw in decawatts (tens of watts, so that it can fit in the graphs nicely)
+  - Power draw in watts
   - Temperature
   - Utilization
 - A graph prototype showing fan speed, power draw and temperature in one graph

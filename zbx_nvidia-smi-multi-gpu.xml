@@ -127,23 +127,17 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>GPU [{#GPUINDEX}] Power in decaWatts</name>
+                            <name>GPU [{#GPUINDEX}] Power in Watts</name>
                             <key>gpu.power[{#GPUINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <value_type>FLOAT</value_type>
-                            <units>dW</units>
+                            <units>W</units>
                             <applications>
                                 <application>
                                     <name>Nvidia</name>
                                 </application>
                             </applications>
-                            <preprocessing>
-                                <step>
-                                    <type>MULTIPLIER</type>
-                                    <params>0.1</params>
-                                </step>
-                            </preprocessing>
                         </item_prototype>
                         <item_prototype>
                             <name>GPU [{#GPUINDEX}] Temperature</name>
