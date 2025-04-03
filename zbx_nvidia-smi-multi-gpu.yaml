@@ -98,6 +98,17 @@ zabbix_export:
                   tag: Application
                   value: Nvidia
             -
+              uuid: 05ff0a79a0c34d8d96c0102d3646e771
+              name: 'GPU [{#GPUINDEX}] Memory Utilization'
+              key: 'gpu.memutilization[{#GPUINDEX}]'
+              delay: '60'
+              history: 7d
+              units: '%'
+              tags:
+                -
+                  tag: Application
+                  value: Nvidia
+            -
               uuid: 60abdb47182748debf219b6800fd6127
               name: 'GPU [{#GPUINDEX}] Power in decaWatts'
               key: 'gpu.power[{#GPUINDEX}]'
@@ -254,6 +265,15 @@ zabbix_export:
                   item:
                     host: 'Template Nvidia GPUs Performance'
                     key: 'gpu.memused[{#GPUINDEX}]'
+            -
+              uuid: d1f05ee7c436416a9a743b931729432f
+              name: 'GPU {#GPUINDEX} Memory Utilization'
+              graph_items:
+                -
+                  color: 2774A4
+                  item:
+                    host: 'Template Nvidia GPUs Performance'
+                    key: 'gpu.memutilization[{#GPUINDEX}]'
             -
               uuid: 8b022359152945828fd71153a4bd3270
               name: 'GPU {#GPUINDEX} Temperature, Fan Speed and Power'
